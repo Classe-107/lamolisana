@@ -14,5 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    $products = config('db.pasta');
+    // dd($products);
+    return view('home', compact('products'));
 });
