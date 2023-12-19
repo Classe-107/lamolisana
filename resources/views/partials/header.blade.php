@@ -26,10 +26,10 @@
                      </a>
                  </li>
                  <li class="nav-item">
-                     {{-- <a class="nav-link {{ Route::currentRouteName() == 'products.create' ? 'active' : '' }}"
-                         href="{{ route('products.create') }}">
-                         Inserisci prodotto
-                     </a> --}}
+                     <a class="nav-link {{ Route::currentRouteName() == 'about' ? 'active' : '' }}"
+                         href="{{ route('about') }}">
+                         Chi siamo
+                     </a>
                  </li>
              </ul>
          </nav>
