@@ -31,6 +31,7 @@ Route::get('/products/{id}', function ($id) {
     //cercare prodotto con quell'id
     if ($id >= 0 && $id < count($products)) {
         $product = $products[$id];
+
         return view('products.show', compact('product'));
     } else {
         abort(404);
