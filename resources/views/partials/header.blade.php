@@ -13,17 +13,17 @@
                      </a>
                  </li>
                  <li class="nav-item">
-                    pippo
-                     {{-- <a class="nav-link {{ Route::currentRouteName() == 'products.index' ? 'active' : '' }}"
+
+                   <a class="nav-link {{ Route::currentRouteName() == 'products.index' ? 'active' : '' }}"
                          href="{{ route('products.index') }}">
                          Prodotti
-                     </a> --}}
+                     </a>
                  </li>
                  <li class="nav-item">
-                     {{-- <a class="nav-link {{ Route::currentRouteName() == 'recipes.index' ? 'active' : '' }}"
+                     <a class="nav-link {{ Route::currentRouteName() == 'recipes.index' ? 'active' : '' }}"
                          href="{{ route('recipes.index') }}">
                          Ricette
-                     </a> --}}
+                     </a>
                  </li>
                  <li class="nav-item">
                      {{-- <a class="nav-link {{ Route::currentRouteName() == 'products.create' ? 'active' : '' }}"

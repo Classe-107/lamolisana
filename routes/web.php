@@ -14,7 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $products = config('db.products');
-    // dd($products);
-    return view('home', compact('products'));
+    //return redirect('/products');
+    //return redirect()->route('products.index');
+    return view('home');
 })->name('home');
+
+Route::get('/products', function () {
+    $products = config('db.products');
+    return view('products.index', compact('products'));
+})->name('products.index');
+
+Route::get('/recipes', function () {
+    $recipes = config('db.recipes');
+    return view('recipes.index', compact('recipes'));
+})->name('recipes.index');
