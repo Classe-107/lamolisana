@@ -44,6 +44,19 @@ Route::get('/recipes', function () {
     return view('recipes.index', compact('recipes'));
 })->name('recipes.index');
 
+Route::get('/recipes/{id}', function ($id) {
+    $recipes = config('db.recipes');
+    //cercare prodotto con quell'id
+    $recipe = null;
+    foreach ($recipes as $item) {
+        if ($item['idMeal'] == $id) {
+            $recipe = $item;
+            return view('recipes.show', compact('recipe'));
+        }
+    }
+    abort(404);
+
+})->name('recipes.show');
 
 Route::get('/about', function () {
     return view('pages.about');

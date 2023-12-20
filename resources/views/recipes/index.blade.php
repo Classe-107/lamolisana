@@ -14,7 +14,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{$item['title']}}</h5>
                         <p class="card-text">{!! substr($item['instructions'], 0, 100) . '...' !!}</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <a href="{{route('recipes.show', $item['idMeal'])}}" class="btn btn-primary">View recipe</a>
                     </div>
                 </div>
             </div>
