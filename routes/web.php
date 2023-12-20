@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Arr;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,6 @@ Route::get('/products/{id}', function ($id) {
     //cercare prodotto con quell'id
     if ($id >= 0 && $id < count($products)) {
         $product = $products[$id];
-
         return view('products.show', compact('product'));
     } else {
         abort(404);
@@ -46,15 +46,14 @@ Route::get('/recipes', function () {
 
 Route::get('/recipes/{id}', function ($id) {
     $recipes = config('db.recipes');
-    //cercare prodotto con quell'id
-    $recipe = null;
-    foreach ($recipes as $item) {
-        if ($item['idMeal'] == $id) {
-            $recipe = $item;
-            return view('recipes.show', compact('recipe'));
-        }
+    $recipe = Arr::first($recipes, function ($value, $key) use ($id) {
+        return $value['idMeal'] == $id;
+    });
+    if ($recipe) {
+        return view('recipes.show', compact('recipe'));
+    } else {
+        abort(404);
     }
-    abort(404);
 
 })->name('recipes.show');
 
@@ -62,3 +61,7 @@ Route::get('/about', function () {
     return view('pages.about');
 }
 )->name('about');
+
+Route::fallback(function () {
+    return redirect()->route('home');
+});
