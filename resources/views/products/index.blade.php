@@ -10,10 +10,10 @@
           @foreach ($products as $key => $product)
             <div class="col-12 col-md-4 col-lg-3">
                 <div class="card">
-                    <img src="{{$product['src']}}" alt="{{$product['titolo']}}" class="card-img-top">
+                    <img src="{{$product['image']}}" alt="{{$product['title']}}" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title">{{$product['titolo']}}</h5>
-                        <p class="card-text">{!! substr($product['descrizione'], 0, 100) . '...' !!}</p>
+                        <h5 class="card-title">{{$product['title']}}</h5>
+                        <p class="card-text">{!! substr($product['description'], 0, 100) . '...' !!}</p>
                         <a href="{{route('products.show', $key)}}" class="btn btn-primary">Vedi dettaglio</a>
                     </div>
                 </div>
