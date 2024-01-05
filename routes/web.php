@@ -23,23 +23,23 @@ Route::get('/', function () {
 
 
 
-// Route::get('/products', function () {
-//     $products = config('db.products');
-//     return view('products.index', compact('products'));
-// })->name('products.index');
-Route::resource('products', ProductController::class);
+Route::get('/products', function () {
+    $products = config('db.products');
+    return view('products.index', compact('products'));
+})->name('products.index');
+// Route::resource('products', ProductController::class);
 
 
-// Route::get('/products/{id}', function ($id) {
-//     $products = config('db.products');
-//     //cercare prodotto con quell'id
-//     if ($id >= 0 && $id < count($products)) {
-//         $product = $products[$id];
-//         return view('products.show', compact('product'));
-//     } else {
-//         abort(404);
-//     }
-// })->name('products.show');
+Route::get('/products/{id}', function ($id) {
+    $products = config('db.products');
+    //cercare prodotto con quell'id
+    if ($id >= 0 && $id < count($products)) {
+        $product = $products[$id];
+        return view('products.show', compact('product'));
+    } else {
+        abort(404);
+    }
+})->name('products.show');
 
 
 Route::get('/recipes', function () {
