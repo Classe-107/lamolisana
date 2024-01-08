@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'DETTAGLIO PRODOTTO')
+@section('title', $product->title)
 
 @section('content')
 <main>
@@ -10,12 +10,12 @@
 
             <div class="col-12">
                 <div class="card">
-                    <img src="{{$product['image']}}" alt="{{$product['title']}}" class="card-img-top">
+                    <img src="{{$product->image}}" alt="{{$product->title}}" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title">{{$product['title']}}</h5>
-                        <p class="card-text">{!! $product['description'] !!}</p>
+                        <h5 class="card-title">{{$product->title}}</h5>
+                        <p class="card-text">{!! $product->description !!}</p>
                         <p>
-                          Peso: {{$product['weight']}} | Cottura: {{$product['cooking_time']}} | Tipo: {{$product['type']}}
+                          Weight: {{$product->weight}} | Cooking time: {{$product->cooking_time}} | Type: {{$product->type}}
                         </p>
                     </div>
                 </div>

@@ -22,22 +22,32 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     *
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $formData = $request->all();
+        $newProduct = new Product();
+        $newProduct->title = $formData['title'];
+        $newProduct->description = $formData['description'];
+        $newProduct->image = $formData['image'];
+        $newProduct->type = $formData['type'];
+        $newProduct->weight = $formData['weight'];
+        $newProduct->cooking_time = $formData['cooking_time'];
+        $newProduct->save();
+        return to_route('products.show', $newProduct->id);
     }
 
     /**

@@ -28,9 +28,6 @@ Route::get('/', function () {
 //     return view('products.index', compact('products'));
 // })->name('products.index');
 
-Route::resource('products', ProductController::class);
-
-
 // Route::get('/products/{id}', function ($id) {
 //     $products = config('db.products');
 //     //cercare prodotto con quell'id
@@ -42,6 +39,7 @@ Route::resource('products', ProductController::class);
 //     }
 // })->name('products.show');
 
+Route::resource('products', ProductController::class);
 
 Route::get('/recipes', function () {
     $recipes = config('db.recipes');
