@@ -87,6 +87,8 @@ php artisan db:seed --class=UsersTableSeeder
 
 # preparo le rotte file web.php es. 
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
+# oppure resource route per tutte le operazioni CRUD
+Route::resource('books',BookController::class);
 
 # creo controller
 php artisan make:controller NomeController
