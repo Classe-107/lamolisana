@@ -37,7 +37,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        //dd($request->all());
         $formData = $request->all();
         $newProduct = new Product();
         $newProduct->title = $formData['title'];

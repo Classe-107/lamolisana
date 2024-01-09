@@ -8,7 +8,14 @@
         <h1>La Molisana </h1>
         <div class="row gy-4">
           <div class="col">
-            Qui andranno carosello  - hero - most popular - commenti
+            <ul>
+                @foreach ($products as $product)
+                    <li>
+                        <a href="{{route('products.show', $product->id)}}">{{$product->title}}</a>
+                    </li>
+
+                @endforeach
+            </ul>
           </div>
         </div>
 
