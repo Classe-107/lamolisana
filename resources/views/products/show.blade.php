@@ -5,7 +5,10 @@
 @section('content')
 <main>
     <section class="container">
-        <h1>Products</h1>
+         <div class="d-flex justify-content-between align-items-center">
+            <h1>{{$product->title}} {{$product->created_at}}</h1>
+            <a href="{{route('products.edit', $product->id)}}" class="btn btn-primary">Modifica prodotto</a>
+        </div>
         <div class="row gy-4">
 
             <div class="col-12">
