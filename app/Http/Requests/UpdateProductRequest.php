@@ -29,7 +29,8 @@ class UpdateProductRequest extends FormRequest
             'cooking_time' => 'required|max:30',
             'weight' => 'required|max:30',
             'description' => 'nullable',
-            'image' => 'nullable',
+            'image' => 'url|nullable',
+
         ];
     }
     /**

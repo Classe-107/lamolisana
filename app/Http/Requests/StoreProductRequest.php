@@ -28,6 +28,8 @@ class StoreProductRequest extends FormRequest
             'type' => 'required|max:50',
             'cooking_time' => 'required|max:30',
             'weight' => 'required|max:30',
+            'image' => 'url|nullable',
+            'description' => 'nullable',
 
         ];
     }

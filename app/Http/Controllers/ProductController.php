@@ -69,7 +69,7 @@ class ProductController extends Controller
         $formData = $request->validated();
 
         //dd($formData);
-        dd($request->all());
+        //dd($request->all());
         $newProduct = Product::create($formData);
         //reindirizzo l'utente alla pagina del nuovo prodotto appena creato
         return to_route('products.show', $newProduct->id);
