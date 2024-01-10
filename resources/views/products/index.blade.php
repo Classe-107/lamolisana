@@ -7,7 +7,19 @@
     <section class="container"  id="products">
         <div class="d-flex justify-content-between align-items-center">
             <h1>Products</h1>
-            <a href="{{route('products.create')}}" class="btn btn-primary">Crea Nuovo prodotto</a>
+            <div>
+                 <a href="{{route('products.create')}}" class="btn btn-primary">Crea Nuovo prodotto</a>
+                 <form action="{{route('products.index')}}" method="GET">
+                    <select name="search" id="search">
+                        <option value="">All</option>
+                        <option value="lunga">Lunghe</option>
+                        <option value="corta">Corte</option>
+                        <option value="cortissima">Cortissime</option>
+                    </select>
+                     <button type="submit" class="btn btn-danger ms-3">Cerca</button>
+                </form>
+            </div>
+
         </div>
         @if (session()->has('message'))
             <div class="alert alert-success">{{ session()->get('message') }}</div>

@@ -16,9 +16,17 @@ class ProductController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $products = Product::all();
+        //dd($request->query());
+        if (!empty($request->query('search'))) {
+            $search = $request->query('search');
+            $products = Product::where('type', $search)->get();
+
+        } else {
+            $products = Product::all();
+        }
+
         return view('products.index', compact('products'));
     }
 
