@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -40,14 +41,15 @@ class ProductController extends Controller
         //dd($request->all());
         //prendo i dati del form dalla request
 
-        $request->validate([
-            'title' => 'required|min:5|max:255|unique:products',
-            'type' => 'required|max:50',
-            'cooking_time' => 'required|max:30',
-            'weight' => 'required|max:30',
-        ]);
+        // $request->validate([
+        //     'title' => 'required|min:5|max:255|unique:products',
+        //     'type' => 'required|max:50',
+        //     'cooking_time' => 'required|max:30',
+        //     'weight' => 'required|max:30',
+        //     'image' => 'url'
+        // ]);
 
-        $formData = $request->all();
+        $formData = $this->validation($request->all());
         //creo un nuovo prodotto
         //$newProduct = new Product();
         //assegno i valori del form al nuovo prodotto
@@ -92,7 +94,15 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $formData = $request->all();
+        // $request->validate([
+        //     'title' => 'required|min:5|max:255|unique:products',
+        //     'type' => 'required|max:50',
+        //     'cooking_time' => 'required|max:30',
+        //     'weight' => 'required|max:30',
+        //     'image' => 'url'
+        // ]);
+        //$formData = $request->all();
+        $formData = $this->validation($request->all());
         // $product->title = $formData['title'];
         // $product->description = $formData['description'];
         // $product->image = $formData['image'];
@@ -114,5 +124,35 @@ class ProductController extends Controller
     {
         $product->delete();
         return to_route('products.index')->with('message', "Il prodotto $product->title è stato eliminato");
+    }
+
+    /**
+     * Summary of validation
+     *
+     */
+    private function validation($data)
+    {
+        $validator = Validator::make($data, [
+
+            'title' => 'required|min:5|max:255|unique:products',
+            'type' => 'required|max:50',
+            'cooking_time' => 'required|max:30',
+            'weight' => 'required|max:30',
+
+
+        ], [
+            'title.required' => 'Il campo titolo è obbligatorio',
+            'title.min' => 'Il campo titolo deve avere almeno :min caratteri',
+            'title.max' => 'Il campo titolo deve avere massimo :max caratteri',
+            'type.required' => 'Il tipo è obbligatorio.',
+            'type.max' => 'Il tipo non può superare i :max caratteri.',
+            'cooking_time.required' => 'Il tempo cottura è obbligatorio.',
+            'cooking_time.max' => 'Il tempo cottura non può superare i :max caratteri.',
+            'weight.required' => 'Il peso è obbligatorio.',
+            'weight.max' => 'Il peso non può superare i :max caratteri.',
+
+        ])->validate();
+
+        return $validator;
     }
 }

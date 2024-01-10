@@ -34,8 +34,11 @@
                         </div>
                          <div class="mb-3 mx-3">
                             <label for="image" class="form-label">Image:</label>
-                            <input type="url" class="form-control" id="image" name="image" placeholder="insert image url">
+                            <input type="url" class="form-control @error('image') is-invalid @enderror" id="image" name="image" placeholder="insert image url">
                         </div>
+                         @error('url')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                         <div class="mb-3 mx-3">
                             <label for="type" class="form-label">Type:</label>
                             <select name="type" id="type" class="form-select" required>
