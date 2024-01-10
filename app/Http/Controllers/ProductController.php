@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 
 class ProductController extends Controller
 {
@@ -36,7 +38,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      *
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
         //dd($request->all());
         //prendo i dati del form dalla request
@@ -49,14 +51,14 @@ class ProductController extends Controller
         //     'image' => 'url'
         // ]);
 
-        $formData = $this->validation($request->all());
+        // $formData = $this->validation($request->all());
         //creo un nuovo prodotto
         //$newProduct = new Product();
         //assegno i valori del form al nuovo prodotto
         //$newProduct->fill($formData);
         //salvo il nuovo prodotto
         //$newProduct->save();
-
+        $formData = $request->validated();
         $newProduct = Product::create($formData);
         //reindirizzo l'utente alla pagina del nuovo prodotto appena creato
         return to_route('products.show', $newProduct->id);
@@ -92,7 +94,7 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      *
      */
-    public function update(Request $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $product)
     {
         // $request->validate([
         //     'title' => 'required|min:5|max:255|unique:products',
@@ -102,13 +104,14 @@ class ProductController extends Controller
         //     'image' => 'url'
         // ]);
         //$formData = $request->all();
-        $formData = $this->validation($request->all());
+        //$formData = $this->validation($request->all());
         // $product->title = $formData['title'];
         // $product->description = $formData['description'];
         // $product->image = $formData['image'];
         // $product->type = $formData['type'];
         // $product->weight = $formData['weight'];
         // $product->cooking_time = $formData['cooking_time'];
+        $formData = $request->validated();
         $product->fill($formData);
         $product->update();
         return to_route('products.show', $product->id);
@@ -130,29 +133,29 @@ class ProductController extends Controller
      * Summary of validation
      *
      */
-    private function validation($data)
-    {
-        $validator = Validator::make($data, [
+    // private function validation($data)
+    // {
+    //     $validator = Validator::make($data, [
 
-            'title' => 'required|min:5|max:255|unique:products',
-            'type' => 'required|max:50',
-            'cooking_time' => 'required|max:30',
-            'weight' => 'required|max:30',
+    //         'title' => 'required|min:5|max:255|unique:products',
+    //         'type' => 'required|max:50',
+    //         'cooking_time' => 'required|max:30',
+    //         'weight' => 'required|max:30',
 
 
-        ], [
-            'title.required' => 'Il campo titolo è obbligatorio',
-            'title.min' => 'Il campo titolo deve avere almeno :min caratteri',
-            'title.max' => 'Il campo titolo deve avere massimo :max caratteri',
-            'type.required' => 'Il tipo è obbligatorio.',
-            'type.max' => 'Il tipo non può superare i :max caratteri.',
-            'cooking_time.required' => 'Il tempo cottura è obbligatorio.',
-            'cooking_time.max' => 'Il tempo cottura non può superare i :max caratteri.',
-            'weight.required' => 'Il peso è obbligatorio.',
-            'weight.max' => 'Il peso non può superare i :max caratteri.',
+    //     ], [
+    //         'title.required' => 'Il campo titolo è obbligatorio',
+    //         'title.min' => 'Il campo titolo deve avere almeno :min caratteri',
+    //         'title.max' => 'Il campo titolo deve avere massimo :max caratteri',
+    //         'type.required' => 'Il tipo è obbligatorio.',
+    //         'type.max' => 'Il tipo non può superare i :max caratteri.',
+    //         'cooking_time.required' => 'Il tempo cottura è obbligatorio.',
+    //         'cooking_time.max' => 'Il tempo cottura non può superare i :max caratteri.',
+    //         'weight.required' => 'Il peso è obbligatorio.',
+    //         'weight.max' => 'Il peso non può superare i :max caratteri.',
 
-        ])->validate();
+    //     ])->validate();
 
-        return $validator;
-    }
+    //     return $validator;
+    // }
 }
